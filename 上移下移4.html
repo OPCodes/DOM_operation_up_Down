@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			ul{
+				position: relative;
+				height: 250px;
+				overflow: hidden;
+			}
+			li{
+				position: absolute;
+				left: 0;
+				padding: 10px;
+				background: #fff;
+			}
+		</style>
+		<script src="tools.js"></script>
+		<script src="MTween.js"></script>
+		<script>
+			window.onload = function (){
+			    var oUl = document.getElementById("oUl");
+			    var aLis = oUl.getElementsByTagName("li");
+			    var len = aLis.length;
+			    for( var i = 0; i < aLis.length; i++ ){
+			    	aLis[i].style.left = "80px";
+			    	aLis[i].style.top = i*50 + "px";
+			    	upAndDownMove(aLis[i],i);
+			    }
+
+			    function upAndDownMove(obj,n){
+			    	var aBtns = obj.getElementsByTagName("input");
+			    	aBtns[0].onclick = function (){
+			    		var h = parseInt(getComputedStyle(obj).top);
+			    		if( h !== 0 ){
+			    			wTn.MTween(this.parentNode,"top",500,h-50,"linear");
+			    			wTn.MTween(this.parentNode.previousElementSibling,"top",500,h,"linear");
+			    			this.parentNode.parentNode.insertBefore(this.parentNode,this.parentNode.previousElementSibling);
+			    			console.log(1);
+			    		} else {
+			    			console.log(2);
+			    			wTn.MTween(this.parentNode,"top",500,(len-1)*50,"linear");
+			    			wTn.MTween(aLis[len-1],"top",500,0,"linear");
+			    			this.parentNode.parentNode.appendChild(this.parentNode);
+			    			this.parentNode.parentNode.insertBefore(this.parentNode.previousElementSibling,aLis[0]);
+			    		}
+			    	}
+			    	aBtns[1].onclick = function (){
+			    		var h = parseInt(getComputedStyle(obj).top);
+			    		if( h !== (len-1)*50 ){
+			    			wTn.MTween(this.parentNode,"top",500,h+50,"linear");
+			    			wTn.MTween(this.parentNode.nextElementSibling,"top",500,h,"linear");
+			    			wxTools.insertAfter(this.parentNode,this.parentNode.nextElementSibling);
+			    		} else {
+			    			wTn.MTween(this.parentNode,"top",500,0,"linear");
+			    			wTn.MTween(aLis[0],"top",500,(len-1)*50,"linear");
+			    			this.parentNode.parentNode.appendChild(aLis[0]);
+			    			this.parentNode.parentNode.insertBefore(this.parentNode,aLis[0]);
+			    		}
+			    	}
+			    }
+			}
+		</script>
+	</head>
+
+	<body>
+		<ul id="oUl">
+			<li>
+				<span>哥哥哥哥</span>
+				<input type="button" value="上移">
+				<input type="button" value="下移">
+			</li>
+			<li>
+				<span>啦啦啦啦</span>
+				<input type="button" value="上移">
+				<input type="button" value="下移">
+			</li>
+			<li>
+				<span>哈哈哈哈</span>
+				<input type="button" value="上移">
+				<input type="button" value="下移">
+			</li>
+			<li>
+				<span>嘿嘿额和</span>
+				<input type="button" value="上移">
+				<input type="button" value="下移">
+			</li>
+			<li>
+				<span>呱呱呱呱</span>
+				<input type="button" value="上移">
+				<input type="button" value="下移">
+			</li>
+			<li>
+				<span>哥哥哥哥</span>
+				<input type="button" value="上移">
+				<input type="button" value="下移">
+			</li>
+			<li>
+				<span>啦啦啦啦</span>
+				<input type="button" value="上移">
+				<input type="button" value="下移">
+			</li>
+		</ul>
+	</body>
+</html>

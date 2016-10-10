@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			ul{
+				position: relative;
+			}
+			li{
+				padding: 10px;
+				background: #fff;
+			}
+		</style>
+		<script src="tools.js"></script>
+		<script>
+			window.onload = function (){
+			    var oUl = document.getElementById("oUl");
+			    var aLis = oUl.getElementsByTagName("li");
+			    for( var i = 0; i < aLis.length; i++ ){
+			    	upAndDownMove(aLis[i])
+			    }
+
+			    function upAndDownMove(obj,n){
+			    	var aBtns = obj.getElementsByTagName("input");
+			    	aBtns[0].onclick = function (){
+			    		if( this.parentNode.previousElementSibling ){
+			    			this.parentNode.parentNode.insertBefore(this.parentNode,this.parentNode.previousElementSibling);
+			    		} else {
+			    			alert("已经在最上边了~");
+			    		}
+
+			    	}
+			    	aBtns[1].onclick = function (){
+			    		if( this.parentNode.nextElementSibling ){
+			    			wxTools.insertAfter(this.parentNode,this.parentNode.nextElementSibling);
+			    		} else {
+			    			alert("已经到最顶端了~");
+			    		}
+			    	}
+			    }
+			}
+		</script>
+	</head>
+
+	<body>
+		<ul id="oUl">
+			<li>
+				<span>啦啦啦啦</span>
+				<input type="button" value="上移">
+				<input type="button" value="下移">
+			</li>
+			<li>
+				<span>哈哈哈哈</span>
+				<input type="button" value="上移">
+				<input type="button" value="下移">
+			</li>
+			<li>
+				<span>嘿嘿额和</span>
+				<input type="button" value="上移">
+				<input type="button" value="下移">
+			</li>
+			<li>
+				<span>呱呱呱呱</span>
+				<input type="button" value="上移">
+				<input type="button" value="下移">
+			</li>
+			<li>
+				<span>哥哥哥哥</span>
+				<input type="button" value="上移">
+				<input type="button" value="下移">
+			</li>
+		</ul>
+	</body>
+</html>
